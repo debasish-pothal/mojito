@@ -1,6 +1,62 @@
 import React from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 
 const Hero = () => {
+  useGSAP(() => {
+    const titleSplit = new SplitText(".title", {
+      type: "chars, words",
+    });
+
+    const subtitleSplit = new SplitText(".subtitle", {
+      type: "lines",
+    });
+
+    titleSplit.chars.forEach((char) => char.classList.add("text-gradient"));
+
+    gsap.from(titleSplit.chars, {
+      yPercent: 100,
+      stagger: 0.06,
+      ease: "expo.out",
+      duration: 1.8,
+    });
+
+    gsap.from(subtitleSplit.lines, {
+      opacity: 0,
+      yPercent: 100,
+      stagger: 0.06,
+      ease: "expo.out",
+      duration: 1.8,
+      delay: 0.5,
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          pin: true,
+        },
+      })
+      .to(
+        ".left-leaf",
+        {
+          y: -200,
+        },
+        0
+      )
+      .to(
+        ".right-leaf",
+        {
+          y: 200,
+        },
+        0
+      );
+  }, []);
+
   return (
     <>
       <section id="hero" className="noisy">
