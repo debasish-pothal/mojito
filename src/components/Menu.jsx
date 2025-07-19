@@ -13,20 +13,20 @@ const Menu = () => {
       .timeline({
         scrollTrigger: {
           trigger: "#menu",
-          start: "top top",
-          end: "bottom top",
+          start: "top center",
+          end: "bottom center",
           scrub: true,
         },
       })
       .to(
-        ".left-leaf",
+        "#m-left-leaf",
         {
           y: -200,
         },
         0
       )
       .to(
-        ".right-leaf",
+        "#m-right-leaf",
         {
           y: 200,
         },
