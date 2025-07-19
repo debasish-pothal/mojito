@@ -9,6 +9,32 @@ const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useGSAP(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#menu",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      })
+      .to(
+        ".left-leaf",
+        {
+          y: -200,
+        },
+        0
+      )
+      .to(
+        ".right-leaf",
+        {
+          y: 200,
+        },
+        0
+      );
+  }, []);
+
+  useGSAP(() => {
     gsap.fromTo("#title", { opacity: 0 }, { opacity: 1, duration: 1 });
     gsap.fromTo(
       ".cocktail img",
